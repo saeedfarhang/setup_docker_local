@@ -25,6 +25,18 @@ services:
       - tartarus_network
     restart: always
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    hostname: pgadmin
+    ports:
+      - "5454:80"
+    env_file:
+      - ./env/pgadmin.env
+    networks:
+      - tartarus_network
+    restart: always
+
 volumes:
   postgres_volume:
   redis_volume:
