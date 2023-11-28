@@ -1,0 +1,21 @@
+stages:
+  - build_prod
+  - deploy_prod
+
+build_prod:
+  stage: build_prod
+  tags:
+    - prod_runner
+  script:
+    - docker compose -f docker-compose.yml build
+  only:
+    - master
+
+deploy_prod:
+  stage: deploy_prod
+  tags:
+    - prod_runner
+  script:
+    - docker compose -f docker-compose.yml up -d
+  only:
+    - master
